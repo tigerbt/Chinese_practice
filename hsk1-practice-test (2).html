@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 1 — Đề Thi Thực Hành</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #d0021b;
+    --red-dark: #9a0114;
+    --gold: #e8a020;
+    --bg: #faf7f2;
+    --white: #ffffff;
+    --ink: #1c1410;
+    --muted: #7a6e62;
+    --border: #e0d8cc;
+    --cream: #f2ede4;
+    --green: #1a7a4a;
+    --blue: #1a5fa8;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--red-dark);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .header-bg-char {
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 160px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    z-index: 1;
+    user-select: none;
+  }
+  .header-left h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+  }
+  .header-left h1 span { color: var(--gold); }
+  .header-left p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 4px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .header-right { text-align: right; }
+  .level-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+  }
+  .header-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+    text-align: right;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    background: var(--red-dark);
+    border-bottom: 3px solid var(--gold);
+    padding: 0 48px;
+  }
+  .tab-btn {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 13px 24px 10px;
+    cursor: pointer;
+    margin-bottom: -3px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { color: white; border-bottom-color: var(--gold); }
+  .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.8); }
+
+  /* PAGE */
+  .page { display:none; padding: 40px 48px; max-width: 900px; margin: 0 auto; }
+  .page.active { display: block; }
+
+  /* SECTION HEADER */
+  .sec-hd {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .sec-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--red);
+    min-width: 40px;
+  }
+  .sec-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .sec-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+  .time-pill {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* INSTRUCTIONS */
+  .instr {
+    background: #fff8e6;
+    border-left: 4px solid var(--gold);
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    color: #5a4a1a;
+    margin-bottom: 28px;
+    border-radius: 0 4px 4px 0;
+  }
+  .instr strong { font-family: 'Noto Serif SC', serif; }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.15s;
+  }
+  .q-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .q-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .q-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: white;
+    background: var(--red);
+    padding: 2px 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .q-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .zh { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; }
+  .pinyin { font-size: 0.85rem; color: var(--blue); font-style: italic; }
+
+  /* OPTIONS */
+  .opts { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 0.95rem;
+    background: var(--cream);
+  }
+  .opt:hover { border-color: var(--red); background: #fff5f5; }
+  .opt input { accent-color: var(--red); }
+  .opt-letter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    min-width: 18px;
+  }
+  .opt-zh { font-family: 'Noto Serif SC', serif; font-size: 1.05rem; }
+  .opt-vi { font-size: 0.82rem; color: var(--muted); margin-left: 4px; }
+
+  /* MATCHING */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .match-col-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .match-item {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .match-item.answer-col {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.88rem;
+  }
+
+  /* FILL BLANK */
+  .fill-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--ink);
+    background: transparent;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    width: 100px;
+    text-align: center;
+    padding: 2px 6px;
+    color: var(--red-dark);
+    outline: none;
+    margin: 0 4px;
+  }
+  .fill-input:focus { border-bottom-color: var(--red); }
+
+  /* TRUE/FALSE */
+  .tf-opts { display:flex; gap:10px; margin-top:10px; }
+  .tf-btn {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9rem;
+    border: 1.5px solid var(--border);
+    background: var(--cream);
+    color: var(--ink);
+    padding: 7px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tf-btn:hover, .tf-btn.selected { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* WRITING SECTION */
+  .writing-prompt {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--gold);
+    border-radius: 0 0 6px 6px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .writing-prompt h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--red-dark);
+  }
+  .char-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .char-box {
+    width: 52px; height: 52px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items:center; justify-content:center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.4rem;
+    color: var(--red-dark);
+    background: var(--cream);
+    cursor: default;
+  }
+  .char-blank {
+    width: 52px; height: 52px;
+    border: 2px dashed var(--red);
+    border-radius: 4px;
+    background: white;
+    position: relative;
+  }
+  .char-blank input {
+    width: 100%; height: 100%;
+    border: none; background: transparent;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.3rem;
+    color: var(--red-dark);
+    outline: none;
+    padding: 0;
+  }
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--cream);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .word-chip {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 12px;
+    color: var(--ink);
+  }
+  textarea.writing-area {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    padding: 14px;
+    resize: vertical;
+    outline: none;
+    color: var(--ink);
+    line-height: 2;
+  }
+  textarea.writing-area:focus { border-color: var(--red); }
+  .word-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 4px;
+  }
+  .word-counter span { color: var(--red); font-weight: 600; }
+
+  /* DIVIDER */
+  hr.div { border:none; border-top:1px solid var(--border); margin: 32px 0; }
+
+  /* SUBMIT BAR */
+  .submit-bar {
+    position: sticky; bottom: 0;
+    background: var(--ink);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 48px;
+    border-top: 3px solid var(--gold);
+  }
+  .submit-bar span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #aaa;
+  }
+  .btn-submit {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 11px 32px;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    transition: all 0.15s;
+  }
+  .btn-submit:hover { background: #f0b030; }
+
+  /* RESULTS */
+  .score-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .score-card {
+    background: var(--ink);
+    color: white;
+    padding: 24px 20px;
+    text-align: center;
+    border-top: 4px solid var(--gold);
+    border-radius: 0 0 4px 4px;
+  }
+  .score-card.red { border-top-color: var(--red); }
+  .score-card.green { border-top-color: #4caf50; }
+  .sc-lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .sc-val { font-family: 'Noto Serif SC', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .sc-sub { font-size: 0.78rem; color: #aaa; margin-top: 5px; }
+
+  .result-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .r-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); min-width: 28px; padding-top: 2px; }
+  .r-icon { font-size: 1rem; min-width: 22px; }
+  .r-q { flex: 1; color: #555; font-size: 0.85rem; }
+  .r-user { font-family: 'Noto Serif SC', serif; font-size: 0.95rem; min-width: 80px; }
+  .r-ans { font-family: 'Noto Serif SC', serif; font-size: 0.88rem; color: var(--green); }
+  .r-ans::before { content: '→ '; }
+
+  .btn-show {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 18px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 14px;
+    display: block;
+  }
+  .btn-show:hover { border-color: var(--red); color: var(--red); }
+  .answer-key {
+    background: #1c1410;
+    color: #f0e8d8;
+    padding: 24px 28px;
+    border-radius: 4px;
+    margin-top: 12px;
+    display: none;
+  }
+  .answer-key h4 { font-family: 'Noto Serif SC', serif; color: var(--gold); margin-bottom: 16px; font-size: 1rem; }
+  .ak-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  .ak-item { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+  .ak-item .aq { color: #888; }
+  .ak-item .aa { color: #7ec8a4; font-weight: 500; }
+
+  @media (max-width: 680px) {
+    header .header-inner { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .tabs { padding: 0 16px; }
+    .page { padding: 24px 16px; }
+    .score-row { grid-template-columns: 1fr; }
+    .submit-bar { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>汉语水平考试 <span>HSK</span></h1>
+      <p>Đề thi thực hành · Reading & Writing · 40 câu</p>
+    </div>
+    <div class="header-right">
+      <div class="level-badge">一级</div>
+      <div class="header-sub">HSK Level 1 · Sơ cấp</div>
+    </div>
+  </div>
+  <div class="header-bg-char">汉</div>
+</header>
+
+<div class="tabs" id="main-tabs">
+  <button class="tab-btn active" onclick="switchTab('reading')">📖 阅读 Reading</button>
+  <button class="tab-btn" onclick="switchTab('writing')">✍️ 书写 Writing</button>
+</div>
+
+<!-- ============================================================ -->
+<!--  READING                                                      -->
+<!-- ============================================================ -->
+<div id="tab-reading" class="page active">
+
+  <div class="sec-hd">
+    <span class="sec-num">一</span>
+    <div>
+      <div class="sec-title">Reading <span class="sec-zh">· 阅读</span></div>
+    </div>
+    <span class="time-pill">⏱ 17 phút · 20 câu</span>
+  </div>
+
+  <!-- PART 1: TRUE/FALSE (Q1-5) -->
+  <div class="instr">
+    <strong>Phần 1 — Đúng hay Sai (第一部分)</strong><br>
+    Xem hình ảnh và câu tiếng Trung. Chọn <strong>✓ Đúng</strong> nếu câu mô tả đúng hình, chọn <strong>✗ Sai</strong> nếu sai.<br>
+    <em style="font-size:0.82rem;">(HSK 1 thực tế dùng hình ảnh; trong đề này ta dùng mô tả bằng tiếng Việt thay thế.)</em>
+  </div>
+
+  <div id="tf-questions"></div>
+
+  <!-- PART 2: MATCHING (Q6-10) -->
+  <div class="instr" style="margin-top:24px;">
+    <strong>Phần 2 — Ghép cặp (第二部分)</strong><br>
+    Nối câu tiếng Trung với nghĩa tiếng Việt đúng bằng cách chọn đáp án A–E.
+  </div>
+
+  <div id="match-questions"></div>
+
+  <!-- PART 3: MC - Choose correct response (Q11-15) -->
+  <div class="instr" style="margin-top:24px;">
+    <strong>Phần 3 — Chọn câu trả lời đúng (第三部分)</strong><br>
+    Đọc câu hỏi và chọn câu trả lời phù hợp nhất.
+  </div>
+
+  <div id="mc-questions"></div>
+
+  <!-- PART 4: Choose correct word (Q16-20) -->
+  <div class="instr" style="margin-top:24px;">
+    <strong>Phần 4 — Chọn từ đúng (第四部分)</strong><br>
+    Chọn từ trong ngoặc điền vào chỗ trống phù hợp nhất.
+  </div>
+
+  <div id="fill-mc-questions"></div>
+
+  <!-- Answer Key Reading -->
+  <button class="btn-show" onclick="toggleEl('ak-reading')">▼ Xem đáp án Reading</button>
+  <div class="answer-key" id="ak-reading">
+    <h4>Đáp án — Reading</h4>
+    <div class="ak-grid" id="ak-reading-grid"></div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!--  WRITING                                                      -->
+<!-- ============================================================ -->
+<div id="tab-writing" class="page">
+
+  <div class="sec-hd">
+    <span class="sec-num">二</span>
+    <div>
+      <div class="sec-title">Writing <span class="sec-zh">· 书写</span></div>
+    </div>
+    <span class="time-pill">⏱ 13 phút · 20 câu</span>
+  </div>
+
+  <!-- PART 5: Reorder (Q21-25) -->
+  <div class="instr">
+    <strong>Phần 5 — Sắp xếp thành câu (第五部分)</strong><br>
+    Chọn thứ tự đúng để tạo thành câu hoàn chỉnh.
+  </div>
+
+  <div id="reorder-questions"></div>
+
+  <!-- PART 6: Fill in character (Q26-30) -->
+  <div class="instr" style="margin-top:24px;">
+    <strong>Phần 6 — Điền từ còn thiếu (第六部分)</strong><br>
+    Chọn từ đúng từ ô bên phải để điền vào chỗ trống (___) trong câu.
+  </div>
+
+  <div id="fill-questions"></div>
+
+  <!-- PART 7: Translate VN → ZH (Q31-35) -->
+  <div class="instr" style="margin-top:24px;">
+    <strong>Phần 7 — Dịch sang tiếng Trung (第七部分)</strong><br>
+    Dịch câu tiếng Việt sang tiếng Trung bằng từ vựng HSK 1. Viết chữ Hán.
+  </div>
+
+  <div id="translate-questions"></div>
+
+  <!-- PART 8: Choose correct sentence (Q36-40) -->
+  <div class="instr" style="margin-top:24px;">
+    <strong>Phần 8 — Câu nào đúng ngữ pháp? (第八部分)</strong><br>
+    Chọn câu tiếng Trung đúng ngữ pháp trong số các lựa chọn.
+  </div>
+
+  <div id="grammar-questions"></div>
+
+  <!-- Answer Key Writing -->
+  <button class="btn-show" onclick="toggleEl('ak-writing')">▼ Xem đáp án Writing</button>
+  <div class="answer-key" id="ak-writing">
+    <h4>Đáp án — Writing</h4>
+    <div class="ak-grid" id="ak-writing-grid"></div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!--  RESULTS                                                      -->
+<!-- ============================================================ -->
+<div id="tab-results" class="page">
+  <div class="sec-hd">
+    <span class="sec-num">成</span>
+    <div><div class="sec-title">Kết quả <span class="sec-zh">· 成绩</span></div></div>
+  </div>
+  <div class="score-row" id="result-summary"></div>
+  <div style="margin-bottom:32px;">
+    <div style="font-family:'Noto Serif SC',serif;font-size:1rem;font-weight:700;margin-bottom:12px;">📖 Chi tiết Reading (阅读)</div>
+    <div id="result-reading" style="background:white;border:1px solid var(--border);border-radius:6px;overflow:hidden;"></div>
+  </div>
+  <div style="margin-bottom:32px;">
+    <div style="font-family:'Noto Serif SC',serif;font-size:1rem;font-weight:700;margin-bottom:12px;">✍️ Chi tiết Writing (书写)</div>
+    <div id="result-writing" style="background:white;border:1px solid var(--border);border-radius:6px;overflow:hidden;"></div>
+  </div>
+  <button class="btn-submit" style="background:var(--ink);color:var(--gold);margin-bottom:48px;" onclick="retakeTest()">↩ Làm lại bài</button>
+</div>
+
+<!-- Name modal -->
+<div id="name-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--bg);border-top:4px solid var(--gold);padding:36px 40px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.4);border-radius:0 0 6px 6px;">
+    <div style="font-family:'Noto Serif SC',serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;">交卷前 — Trước khi nộp bài</div>
+    <div style="font-size:0.85rem;color:var(--muted);margin-bottom:18px;">Nhập tên để lưu kết quả vào Google Sheets.</div>
+    <input id="student-name" type="text" placeholder="Họ và tên của bạn…"
+      style="width:100%;border:2px solid var(--border);background:white;font-family:'Be Vietnam Pro',sans-serif;font-size:1rem;padding:10px 14px;outline:none;margin-bottom:14px;border-radius:4px;"
+      onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'"
+      onkeydown="if(event.key==='Enter') confirmSubmit()">
+    <div style="display:flex;gap:10px;">
+      <button onclick="document.getElementById('name-modal').style.display='none'"
+        style="flex:1;font-family:'Noto Serif SC',serif;font-size:0.95rem;background:var(--cream);border:1px solid var(--border);padding:10px;cursor:pointer;border-radius:4px;">取消 Huỷ</button>
+      <button onclick="confirmSubmit()"
+        style="flex:2;font-family:'Noto Serif SC',serif;font-size:0.95rem;font-weight:700;background:var(--gold);border:none;padding:10px;cursor:pointer;border-radius:4px;color:var(--ink);">交卷 Nộp bài ▶</button>
+    </div>
+    <div id="submit-status" style="margin-top:10px;font-size:0.82rem;text-align:center;color:var(--muted);min-height:20px;"></div>
+  </div>
+</div>
+
+<div class="submit-bar">
+  <span id="progress-label">0 / 40 câu đã trả lời</span>
+  <button class="btn-submit" onclick="document.getElementById('name-modal').style.display='flex'">Nộp bài 交卷 ▶</button>
+</div>
+
+<script>
+// ─── DATA ──────────────────────────────────────────────────────────────
+
+// Part 1: True/False (Q1-5)
+// Format: { sentence_zh, pinyin, image_desc (tiếng Việt mô tả "ảnh"), correct: true/false }
+const tfData = [
+  { q:1, zh:'她喝水。', pinyin:'Tā hē shuǐ.', desc:'Hình: Một người phụ nữ đang uống nước.', correct: true },
+  { q:2, zh:'他们是老师。', pinyin:'Tāmen shì lǎoshī.', desc:'Hình: Hai người đang ngồi học bài trong lớp học.', correct: false },
+  { q:3, zh:'这是苹果。', pinyin:'Zhè shì píngguǒ.', desc:'Hình: Một quả táo đỏ.', correct: true },
+  { q:4, zh:'猫在桌子上。', pinyin:'Māo zài zhuōzi shàng.', desc:'Hình: Con mèo đang nằm dưới ghế.', correct: false },
+  { q:5, zh:'他叫王明。', pinyin:'Tā jiào Wáng Míng.', desc:'Hình: Thẻ tên ghi "王明 Wáng Míng".', correct: true },
+];
+
+// Part 2: Matching (Q6-10)
+const matchData = [
+  { q:6,  zh:'你好！', pinyin:'Nǐ hǎo!', correct:'A' },
+  { q:7,  zh:'谢谢你。', pinyin:'Xièxie nǐ.', correct:'B' },
+  { q:8,  zh:'我爱你。', pinyin:'Wǒ ài nǐ.', correct:'C' },
+  { q:9,  zh:'再见！', pinyin:'Zàijiàn!', correct:'D' },
+  { q:10, zh:'对不起。', pinyin:'Duìbuqǐ.', correct:'E' },
+];
+const matchOptions = {
+  A:'Xin chào!', B:'Cảm ơn bạn.', C:'Tôi yêu bạn.', D:'Tạm biệt!', E:'Xin lỗi.'
+};
+
+// Part 3: Multiple choice — choose response (Q11-15)
+const mcData = [
+  { q:11, zh:'你叫什么名字？', pinyin:'Nǐ jiào shénme míngzi?', opts:['A. 我叫李华。(Tôi tên Lý Hoa.)', 'B. 我很好。(Tôi rất khỏe.)', 'C. 我是学生。(Tôi là học sinh.)'], correct:'A' },
+  { q:12, zh:'现在几点？', pinyin:'Xiànzài jǐ diǎn?', opts:['A. 我有书。(Tôi có sách.)', 'B. 现在三点。(Bây giờ 3 giờ.)', 'C. 我喜欢猫。(Tôi thích mèo.)'], correct:'B' },
+  { q:13, zh:'你喝什么？', pinyin:'Nǐ hē shénme?', opts:['A. 我喝茶。(Tôi uống trà.)', 'B. 我去学校。(Tôi đến trường.)', 'C. 我很累。(Tôi rất mệt.)'], correct:'A' },
+  { q:14, zh:'他是你爸爸吗？', pinyin:'Tā shì nǐ bàba ma?', opts:['A. 不，她是我妈妈。', 'B. 是的，他是我爸爸。', 'C. 他很高。(Anh ấy rất cao.)'], correct:'B' },
+  { q:15, zh:'你家有几口人？', pinyin:'Nǐ jiā yǒu jǐ kǒu rén?', opts:['A. 我家有四口人。(Nhà tôi có 4 người.)', 'B. 我家很大。(Nhà tôi rất lớn.)', 'C. 我没有书。(Tôi không có sách.)'], correct:'A' },
+];
+
+// Part 4: Fill-blank MC (Q16-20)
+const fillMcData = [
+  { q:16, sentence:'我___学生。', blank_vi:'(là)', opts:['A. 有', 'B. 是', 'C. 很'], correct:'B' },
+  { q:17, sentence:'她___喜欢猫。', blank_vi:'(rất)', opts:['A. 很', 'B. 不', 'C. 都'], correct:'A' },
+  { q:18, sentence:'这___苹果好吃。', blank_vi:'(cái/quả)', opts:['A. 个', 'B. 本', 'C. 张'], correct:'A' },
+  { q:19, sentence:'我___有弟弟。', blank_vi:'(không)', opts:['A. 很', 'B. 没', 'C. 都'], correct:'B' },
+  { q:20, sentence:'他们在___里学习。', blank_vi:'(trường học)', opts:['A. 家', 'B. 学校', 'C. 医院'], correct:'B' },
+];
+
+// Part 5: Reorder (Q21-25)
+const reorderData = [
+  { q:21, words_scrambled:['喜欢', '我', '汉语', '学'], correct_order:'我喜欢学汉语。', vi:'Tôi thích học tiếng Trung.', opts:['A. 我喜欢学汉语。', 'B. 汉语喜欢我学。', 'C. 学我喜欢汉语。'], correct:'A' },
+  { q:22, words_scrambled:['是', '她', '老师', '好'], correct_order:'她是好老师。', vi:'Cô ấy là giáo viên tốt.', opts:['A. 好老师她是。', 'B. 她是好老师。', 'C. 老师她好是。'], correct:'B' },
+  { q:23, words_scrambled:['几', '你', '岁', '多'], correct_order:'你多大了？', vi:'Bạn bao nhiêu tuổi?', opts:['A. 你多大了？', 'B. 多你岁几？', 'C. 岁你几多？'], correct:'A' },
+  { q:24, words_scrambled:['有', '桌子上', '书', '两本'], correct_order:'桌子上有两本书。', vi:'Trên bàn có hai quyển sách.', opts:['A. 两本书有桌子上。', 'B. 有两本书桌子上。', 'C. 桌子上有两本书。'], correct:'C' },
+  { q:25, words_scrambled:['下午', '他', '喝', '喜欢', '茶'], correct_order:'他下午喜欢喝茶。', vi:'Buổi chiều anh ấy thích uống trà.', opts:['A. 他下午喜欢喝茶。', 'B. 喝茶他下午喜欢。', 'C. 他喜欢下午喝茶。'], correct:'A' },
+];
+
+// Part 6: Fill blank — choose from options (Q26-30)
+const fillData = [
+  { q:26, sentence_parts:['我', '___ ', '中国人。'], options:['是','有','在'], correct:'是', vi:'Tôi là người Trung Quốc.' },
+  { q:27, sentence_parts:['她', '___ ', '一个苹果。'], options:['是','吃','有'], correct:'有', vi:'Cô ấy có một quả táo.' },
+  { q:28, sentence_parts:['他', '___ ', '学校吗？'], options:['在','有','是'], correct:'在', vi:'Anh ấy có ở trường không?' },
+  { q:29, sentence_parts:['这', '___ ', '我的书。'], options:['有','是','在'], correct:'是', vi:'Đây là sách của tôi.' },
+  { q:30, sentence_parts:['我', '___ ', '喜欢喝水。'], options:['很','不','也'], correct:'不', vi:'Tôi không thích uống nước.' },
+];
+
+// Part 7: Translate VN → ZH (Q31-35) — open input
+const translateData = [
+  { q:31, vi:'Xin chào!', answer:'你好！', hint:'nǐ hǎo' },
+  { q:32, vi:'Tôi là học sinh.', answer:'我是学生。', hint:'wǒ shì xuésheng' },
+  { q:33, vi:'Cảm ơn.', answer:'谢谢。', hint:'xièxiè' },
+  { q:34, vi:'Tôi yêu mẹ tôi.', answer:'我爱我妈妈。', hint:'wǒ ài wǒ māma' },
+  { q:35, vi:'Bây giờ mấy giờ?', answer:'现在几点？', hint:'xiànzài jǐ diǎn' },
+];
+
+// Part 8: Grammar (Q36-40)
+const grammarData = [
+  { q:36, opts:['A. 我是不老师。', 'B. 我不是老师。', 'C. 我老师不是。'], correct:'B', explain:'Phủ định với 不 đặt trước động từ 是.' },
+  { q:37, opts:['A. 她有猫一只。', 'B. 她一只有猫。', 'C. 她有一只猫。'], correct:'C', explain:'Số lượng từ đứng trước danh từ: 一只猫.' },
+  { q:38, opts:['A. 你吃什么饭？', 'B. 你饭什么吃？', 'C. 什么你吃饭？'], correct:'A', explain:'Câu hỏi với 什么: giữ nguyên cấu trúc câu, thay thế vị trí cần hỏi.' },
+  { q:39, opts:['A. 他们都是学生。', 'B. 他们是都学生。', 'C. 都他们是学生。'], correct:'A', explain:'都 đặt trước động từ để nhấn mạnh "tất cả đều".' },
+  { q:40, opts:['A. 我家有人四口。', 'B. 我家有四口人。', 'C. 我家四口有人。'], correct:'B', explain:'Lượng từ 口 kết hợp số từ đứng trước danh từ 人.' },
+];
+
+// ─── RENDER QUESTIONS ────────────────────────────────────────────────
+
+// Part 1
+const tfContainer = document.getElementById('tf-questions');
+tfData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span style="font-size:0.78rem;color:var(--muted);font-style:italic;">${item.desc}</span>
+    </div>
+    <div class="q-text">
+      <span class="zh">${item.zh}</span>
+      <span class="pinyin" style="margin-left:10px;">${item.pinyin}</span>
+    </div>
+    <div class="tf-opts">
+      <button class="tf-btn" data-q="${item.q}" data-val="true" onclick="selectTF(this)">✓ Đúng</button>
+      <button class="tf-btn" data-q="${item.q}" data-val="false" onclick="selectTF(this)">✗ Sai</button>
+    </div>`;
+  tfContainer.appendChild(div);
+});
+
+// Part 2: Matching
+const matchContainer = document.getElementById('match-questions');
+matchData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span class="zh">${item.zh}</span>
+      <span class="pinyin" style="margin-left:8px;">${item.pinyin}</span>
+    </div>
+    <div class="opts">
+      ${Object.entries(matchOptions).map(([k,v]) => `
+        <label class="opt">
+          <input type="radio" name="q${item.q}" value="${k}">
+          <span class="opt-letter">${k}.</span>
+          <span>${v}</span>
+        </label>`).join('')}
+    </div>`;
+  matchContainer.appendChild(div);
+});
+
+// Part 3: MC
+const mcContainer = document.getElementById('mc-questions');
+mcData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span class="zh">${item.zh}</span>
+    </div>
+    <div class="pinyin" style="margin-bottom:10px;">${item.pinyin}</div>
+    <div class="opts">
+      ${item.opts.map((o,i) => `
+        <label class="opt">
+          <input type="radio" name="q${item.q}" value="${['A','B','C'][i]}">
+          <span class="opt-letter">${['A','B','C'][i]}.</span>
+          <span class="opt-zh">${o.replace(/^[ABC]\.\s*/,'').split('(')[0].trim()}</span>
+          ${o.includes('(') ? `<span class="opt-vi">(${o.split('(')[1].replace(')','').trim()})</span>` : ''}
+        </label>`).join('')}
+    </div>`;
+  mcContainer.appendChild(div);
+});
+
+// Part 4: Fill MC
+const fillMcContainer = document.getElementById('fill-mc-questions');
+fillMcData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span class="zh">${item.sentence}</span>
+      <span class="opt-vi" style="margin-left:6px;">${item.blank_vi}</span>
+    </div>
+    <div class="opts">
+      ${item.opts.map((o,i) => `
+        <label class="opt">
+          <input type="radio" name="q${item.q}" value="${['A','B','C'][i]}">
+          <span class="opt-letter">${['A','B','C'][i]}.</span>
+          <span class="opt-zh">${o.replace(/^[ABC]\.\s*/,'')}</span>
+        </label>`).join('')}
+    </div>`;
+  fillMcContainer.appendChild(div);
+});
+
+// Part 5: Reorder
+const reorderContainer = document.getElementById('reorder-questions');
+reorderData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span style="font-size:0.88rem;color:var(--muted);">Sắp xếp thành câu có nghĩa: <em>${item.vi}</em></span>
+    </div>
+    <div class="word-bank" style="margin-bottom:12px;">
+      ${item.words_scrambled.map(w=>`<span class="word-chip">${w}</span>`).join('')}
+    </div>
+    <div class="opts">
+      ${item.opts.map((o,i) => `
+        <label class="opt">
+          <input type="radio" name="q${item.q}" value="${['A','B','C'][i]}">
+          <span class="opt-letter">${['A','B','C'][i]}.</span>
+          <span class="opt-zh">${o.replace(/^[ABC]\.\s*/,'')}</span>
+        </label>`).join('')}
+    </div>`;
+  reorderContainer.appendChild(div);
+});
+
+// Part 6: Fill blank
+const fillContainer = document.getElementById('fill-questions');
+fillData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  const sentence = item.sentence_parts[0] + ' <span style="color:var(--red);font-weight:700;">[___]</span> ' + item.sentence_parts[2];
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span class="zh">${sentence}</span>
+    </div>
+    <div class="opt-vi" style="margin-bottom:10px;font-size:0.85rem;">${item.vi}</div>
+    <div class="opts">
+      ${item.options.map((o,i) => `
+        <label class="opt">
+          <input type="radio" name="q${item.q}" value="${o}">
+          <span class="opt-letter">${['A','B','C'][i]}.</span>
+          <span class="opt-zh">${o}</span>
+        </label>`).join('')}
+    </div>`;
+  fillContainer.appendChild(div);
+});
+
+// Part 7: Translate
+const transContainer = document.getElementById('translate-questions');
+translateData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span style="font-size:1rem;font-weight:600;">${item.vi}</span>
+    </div>
+    <div style="font-size:0.8rem;color:var(--blue);margin-bottom:8px;">Gợi ý pinyin: <em>${item.hint}</em></div>
+    <textarea class="writing-area" id="trans_${item.q}" rows="2" style="min-height:60px;" placeholder="Viết chữ Hán ở đây…" oninput="updateProgress()"></textarea>`;
+  transContainer.appendChild(div);
+});
+
+// Part 8: Grammar
+const grammarContainer = document.getElementById('grammar-questions');
+grammarData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'q-card';
+  div.innerHTML = `
+    <div class="q-header">
+      <span class="q-num">Q${item.q}</span>
+      <span style="font-size:0.9rem;color:var(--muted);">Câu nào đúng ngữ pháp?</span>
+    </div>
+    <div class="opts">
+      ${item.opts.map((o,i) => `
+        <label class="opt">
+          <input type="radio" name="q${item.q}" value="${['A','B','C'][i]}">
+          <span class="opt-letter">${['A','B','C'][i]}.</span>
+          <span class="opt-zh">${o.replace(/^[ABC]\.\s*/,'')}</span>
+        </label>`).join('')}
+    </div>`;
+  grammarContainer.appendChild(div);
+});
+
+// ─── ANSWER KEYS DISPLAY ────────────────────────────────────────────
+
+const allAnswers = [
+  ...tfData.map(t => ({ q: t.q, a: t.correct ? '✓ Đúng' : '✗ Sai' })),
+  ...matchData.map(m => ({ q: m.q, a: m.correct + ' — ' + matchOptions[m.correct] })),
+  ...mcData.map(m => ({ q: m.q, a: m.correct })),
+  ...fillMcData.map(m => ({ q: m.q, a: m.correct })),
+  ...reorderData.map(r => ({ q: r.q, a: r.correct + '. ' + r.correct_order })),
+  ...fillData.map(f => ({ q: f.q, a: f.correct })),
+  ...translateData.map(t => ({ q: t.q, a: t.answer })),
+  ...grammarData.map(g => ({ q: g.q, a: g.correct })),
+];
+
+const akRGrid = document.getElementById('ak-reading-grid');
+const akWGrid = document.getElementById('ak-writing-grid');
+allAnswers.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'ak-item';
+  div.innerHTML = `<span class="aq">Q${item.q}. </span><span class="aa">${item.a}</span>`;
+  if (item.q <= 20) akRGrid.appendChild(div);
+  else akWGrid.appendChild(div);
+});
+
+// ─── INTERACTION ─────────────────────────────────────────────────────
+
+function selectTF(btn) {
+  btn.parentElement.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateProgress();
+}
+
+function updateProgress() {
+  let count = 0;
+  document.querySelectorAll('.tf-btn.selected').forEach(() => count++);
+  document.querySelectorAll('input[type="radio"]:checked').forEach(() => count++);
+  document.querySelectorAll('textarea.writing-area').forEach(t => { if(t.value.trim()) count++; });
+  document.getElementById('progress-label').textContent = count + ' / 40 câu đã trả lời';
+}
+
+document.querySelectorAll('input[type="radio"]').forEach(r => r.addEventListener('change', updateProgress));
+
+function switchTab(tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (tab === 'reading') document.querySelectorAll('.tab-btn')[0].classList.add('active');
+  else if (tab === 'writing') document.querySelectorAll('.tab-btn')[1].classList.add('active');
+  else {
+    const rb = document.getElementById('tab-btn-results');
+    if (rb) rb.classList.add('active');
+  }
+}
+
+function toggleEl(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+// ─── SUBMIT ──────────────────────────────────────────────────────────
+
+function submitTest(studentName) {
+  const results = [];
+
+  // TF
+  tfData.forEach(item => {
+    const sel = document.querySelector(`.tf-btn.selected[data-q="${item.q}"]`);
+    const user = sel ? (sel.dataset.val === 'true') : null;
+    const correct = item.correct;
+    results.push({ q: item.q, type:'tf', label: item.zh, user: user === null ? null : (user ? '✓ Đúng' : '✗ Sai'), correct: correct ? '✓ Đúng' : '✗ Sai', ok: user !== null && user === correct });
+  });
+
+  // Match
+  matchData.forEach(item => {
+    const r = document.querySelector(`input[name="q${item.q}"]:checked`);
+    const user = r ? r.value : null;
+    results.push({ q: item.q, type:'match', label: item.zh, user, correct: item.correct + ' — ' + matchOptions[item.correct], ok: user === item.correct });
+  });
+
+  // MC
+  [...mcData, ...fillMcData].forEach(item => {
+    const r = document.querySelector(`input[name="q${item.q}"]:checked`);
+    const user = r ? r.value : null;
+    results.push({ q: item.q, type:'mc', label: item.zh || item.sentence, user, correct: item.correct, ok: user === item.correct });
+  });
+
+  // Reorder
+  reorderData.forEach(item => {
+    const r = document.querySelector(`input[name="q${item.q}"]:checked`);
+    const user = r ? r.value : null;
+    results.push({ q: item.q, type:'reorder', label: item.vi, user, correct: item.correct, ok: user === item.correct });
+  });
+
+  // Fill
+  fillData.forEach(item => {
+    const r = document.querySelector(`input[name="q${item.q}"]:checked`);
+    const user = r ? r.value : null;
+    results.push({ q: item.q, type:'fill', label: item.vi, user, correct: item.correct, ok: user === item.correct });
+  });
+
+  // Translate
+  translateData.forEach(item => {
+    const ta = document.getElementById('trans_' + item.q);
+    const user = ta ? ta.value.trim() : '';
+    const ok = user.includes(item.answer.replace('。','').replace('！','').replace('？',''));
+    results.push({ q: item.q, type:'translate', label: item.vi, user: user||null, correct: item.answer, ok: !!user });
+  });
+
+  // Grammar
+  grammarData.forEach(item => {
+    const r = document.querySelector(`input[name="q${item.q}"]:checked`);
+    const user = r ? r.value : null;
+    results.push({ q: item.q, type:'grammar', label:'Chọn câu đúng', user, correct: item.correct, ok: user === item.correct });
+  });
+
+  results.sort((a,b) => a.q - b.q);
+
+  const readingResults = results.filter(r => r.q <= 20);
+  const writingResults = results.filter(r => r.q > 20);
+  const rcorrect = readingResults.filter(r => r.ok).length;
+  const wcorrect = writingResults.filter(r => r.ok).length;
+  const total = rcorrect + wcorrect;
+  const pct = Math.round((total / 40) * 100);
+  const pass = total >= 35; // Pass: 35/40
+  const grade = pct >= 90 ? '优秀' : pct >= 75 ? '良好' : pct >= 60 ? '通过' : '不通过';
+  const gradeVi = pct >= 90 ? 'Xuất sắc' : pct >= 75 ? 'Tốt' : pct >= 60 ? 'Đạt' : 'Chưa đạt';
+
+  // Summary cards
+  document.getElementById('result-summary').innerHTML = `
+    <div class="score-card">
+      <div class="sc-lbl">Tổng điểm</div>
+      <div class="sc-val">${total}<span style="font-size:1.2rem;color:#888">/40</span></div>
+      <div class="sc-sub">${pct}% tổng thể</div>
+    </div>
+    <div class="score-card red">
+      <div class="sc-lbl">Kết quả</div>
+      <div class="sc-val" style="font-size:1.6rem;color:${pass?'#7ec8a4':'#e57373'}">${gradeVi}</div>
+      <div class="sc-sub" style="font-family:'Noto Serif SC',serif;">${grade} · ${pass?'通过 ✓':'需要加油 ✗'}</div>
+    </div>
+    <div class="score-card green">
+      <div class="sc-lbl">Reading / Writing</div>
+      <div class="sc-val" style="font-size:1.6rem;">${rcorrect}<span style="font-size:1rem;color:#888">/20</span> · ${wcorrect}<span style="font-size:1rem;color:#888">/20</span></div>
+      <div class="sc-sub">Đọc · Viết</div>
+    </div>`;
+
+  // Detail rows
+  function buildDetail(list, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    list.forEach(r => {
+      const row = document.createElement('div');
+      row.className = 'result-row';
+      const icon = r.user === null ? '⬜' : r.ok ? '✅' : '❌';
+      const userDisplay = r.user !== null ? `<span class="r-user" style="font-family:'Noto Serif SC',serif;">${r.user}</span>` : `<span style="color:#bbb;font-size:0.82rem;">— chưa trả lời</span>`;
+      const correctHint = !r.ok && r.user !== null ? `<span class="r-ans">${r.correct}</span>` : '';
+      row.innerHTML = `<span class="r-num">Q${r.q}</span><span class="r-icon">${icon}</span><span class="r-q">${r.label}</span>${userDisplay}${correctHint}`;
+      container.appendChild(row);
+    });
+  }
+  buildDetail(readingResults, 'result-reading');
+  buildDetail(writingResults, 'result-writing');
+
+  // Add results tab
+  const tabs = document.getElementById('main-tabs');
+  if (!document.getElementById('tab-btn-results')) {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn active';
+    btn.id = 'tab-btn-results';
+    btn.textContent = '📊 Kết quả 成绩';
+    btn.onclick = () => switchTab('results');
+    tabs.appendChild(btn);
+  }
+  switchTab('results');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwNcK7SfcMKIS7v3kjFD3iEd05Fj4k8TFLkQ2MeRf-EgIiCuZ6yd-60DVToRK0PCmbk/exec';
+
+function confirmSubmit() {
+  const name = document.getElementById('student-name').value.trim();
+  if (!name) {
+    document.getElementById('submit-status').textContent = '⚠ Vui lòng nhập tên trước khi nộp.';
+    document.getElementById('submit-status').style.color = '#d0021b';
+    return;
+  }
+  document.getElementById('submit-status').textContent = '⏳ Đang lưu kết quả…';
+  document.getElementById('submit-status').style.color = 'var(--muted)';
+  submitTest(name);
+}
+
+function sendToSheet(payload) {
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    document.getElementById('submit-status').textContent = '✓ Đã lưu kết quả thành công!';
+    document.getElementById('submit-status').style.color = '#1a7a4a';
+    setTimeout(() => document.getElementById('name-modal').style.display = 'none', 1200);
+  }).catch(() => {
+    document.getElementById('submit-status').textContent = '⚠ Không thể lưu — vẫn hiển thị kết quả.';
+    setTimeout(() => document.getElementById('name-modal').style.display = 'none', 1200);
+  });
+}
+
+function retakeTest() {
+  document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('textarea.writing-area').forEach(t => t.value = '');
+  document.getElementById('student-name').value = '';
+  updateProgress();
+  switchTab('reading');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
